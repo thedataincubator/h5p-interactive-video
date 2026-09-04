@@ -306,12 +306,6 @@ function InteractiveVideo(params, id, contentData) {
       // Update IV player UI
       self.loaded();
 
-      if (!self.controls) {
-        // Make sure that controls are added before setting time
-        self.addControls();
-        self.trigger('resize');
-      }
-
       self.updateCurrentTime(self.currentTime);
       self.setSliderPosition(self.currentTime);
     });
@@ -3678,6 +3672,9 @@ InteractiveVideo.prototype.findNextInteractionToHide = function (time) {
   for (var i = 0; i < this.visibleInteractions.length; i++) {
     if (this.interactions[this.visibleInteractions[i]]) {
       const duration = this.interactions[this.visibleInteractions[i]].getDuration();
+      if (duration.from > time) {
+        return i; // Probably seeking backwards
+      }
       if (candidate === undefined || duration.to < this.interactions[this.visibleInteractions[candidate]].getDuration().to) {
         candidate = i;
       }
