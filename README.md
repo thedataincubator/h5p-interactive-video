@@ -32,11 +32,13 @@ or
 npm run watch
 ```
 
-You can then use [H5P cli](https://github.com/h5p/h5p-cli) to pack the library e.g. using
+You can then use [H5P cli](https://github.com/h5p/h5p-cli) to pack the library. To do this, `cd` to the parent of the directory containing this README and run:
 
 ```
-h5p pack -r <library folder> <output file>
+h5p utils pack -r <library folder> <output file>
 ```
+
+where library folder is the folder containing this file (presumably `h5p-interactive-video` if you cloned this repo)
 
 Alternatively, you can arrange and zip files manually, but make sure to adhere to the [H5P specification](https://h5p.org/documentation/developers/h5p-specification).
 
