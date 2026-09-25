@@ -32,13 +32,17 @@ or
 npm run watch
 ```
 
-You can then use [H5P cli](https://github.com/h5p/h5p-cli) to pack the library. To do this, `cd` to the parent of the directory containing this README and run:
+You can then use [H5P cli](https://github.com/h5p/h5p-cli) to pack the library. This isn't quite as simple as the original instructions made it seem. You'll need to set up the file structure the way the CLI is expecting.
+
+Create a new folder, and `cd` into it. Run `h5p setup h5p-interactive-video`. This will download and install the default interactive video (the one we're replacing) and its dependency chain. It has the same dependencies as our version. This should create a `libraries` folder, and in that folder a `H5P.InteractiveVideo-1.28` folder. Erase the `H5P.InteractiveVideo-1.28` folder, and replace it with this repo's folder (basically, `mv wherever/you/put/it/h5p-interactive-video libraries/H5P.InteractiveVideo-1.28`, or re-clone it to the right place and re-run the build process - the latter is probably safer).
+
+Make sure you're in the libraries folder, then you can pack it with:
 
 ```
 h5p utils pack -r <library folder> <output file>
 ```
 
-where library folder is the folder containing this file (presumably `h5p-interactive-video` if you cloned this repo)
+where library folder is `H5P.InteractiveVideo-1.28`, and the output file has an `.h5p` extension. The `-r` flag should include the dependencies as well, so you should get an h5p file in the 4 MB range.
 
 Alternatively, you can arrange and zip files manually, but make sure to adhere to the [H5P specification](https://h5p.org/documentation/developers/h5p-specification).
 
